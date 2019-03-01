@@ -23,13 +23,18 @@ class ReverseLinkedList_206{
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head.next == null) {
-            return head;
+        ListNode pre, cur, nxt;
+        pre = null; cur = head; nxt = head;
+        while (cur != null) {
+            nxt = cur.next;
+            // 逐个结点反转
+            cur.next = pre;
+            // 更新指针位置
+            pre = cur;
+            cur = nxt;
         }
-        ListNode last = reverseList(head.next);
-        head.next.next = head;
-        head.next = null;
-        return last;
+        // 返回反转后的头结点
+        return pre;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
