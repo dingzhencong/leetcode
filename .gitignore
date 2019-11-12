@@ -24,3 +24,5 @@ hs_err_pid*
 
 doc/
 all.json
+translation.json
+*.iml
