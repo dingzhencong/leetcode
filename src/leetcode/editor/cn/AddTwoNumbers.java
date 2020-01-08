@@ -17,7 +17,7 @@ package leetcode.editor.cn;
 public class AddTwoNumbers{
     public static void main(String[] args){
         Solution solution = new AddTwoNumbers().new Solution();
-        
+        System.out.println("111");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**

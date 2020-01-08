@@ -22,7 +22,7 @@ class ReverseLinkedList_206{
  * }
  */
 class Solution {
-    public ListNode reverseList(ListNode head) {
+    /*public ListNode reverseList(ListNode head) {
         ListNode pre, cur, nxt;
         pre = null; cur = head; nxt = head;
         while (cur != null) {
@@ -35,6 +35,14 @@ class Solution {
         }
         // 返回反转后的头结点
         return pre;
+    }*/
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode last = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return last;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
