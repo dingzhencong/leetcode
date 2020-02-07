@@ -66,9 +66,11 @@ public class Solution {
     public int hammingWeight(int n) {
         int count = 0;
         while (n != 0) {
-            count = count & (count - 1);
+            n &= (n - 1);
+            count++;
         }
         return count;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
