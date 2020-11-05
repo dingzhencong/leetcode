@@ -9,4 +9,8 @@ public class ListNode {
         this.next = next;
         val = x;
     }
+
+    public ListNode() {
+
+    }
 }
