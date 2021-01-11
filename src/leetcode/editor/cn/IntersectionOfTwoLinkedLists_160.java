@@ -61,6 +61,26 @@ package leetcode.editor.cn;
 
 //相交链表
 class IntersectionOfTwoLinkedLists_160{
+    public static void main(String[] args) {
+        //listA = [4,1,8,4,5], listB = [5,0,1,8,4,5]
+        Solution solution = new IntersectionOfTwoLinkedLists_160().new Solution();
+        ListNode listNodeA1 = new ListNode(4);
+        ListNode listNodeA2 = new ListNode(1);
+        ListNode listNodeA3 = new ListNode(8);
+        ListNode listNodeA4 = new ListNode(4);
+        ListNode listNodeA5 = new ListNode(5);
+        listNodeA1.next = listNodeA2;
+        listNodeA2.next = listNodeA3;
+        listNodeA3.next = listNodeA4;
+        listNodeA4.next = listNodeA5;
+        ListNode listNodeB1 = new ListNode(5);
+        ListNode listNodeB2 = new ListNode(0);
+        listNodeB1.next = listNodeB2;
+        listNodeB2.next = listNodeA2;
+        ListNode node = solution.getIntersectionNode(listNodeA1, listNodeB1);
+        System.out.println(node.val);
+
+    }
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
@@ -80,9 +100,14 @@ public class Solution {
         }
         ListNode nodeA = headA;
         ListNode nodeB = headB;
+        //listA = [4,1,8,4,5],
+        //listB = [5,0,1,8,4,5]
         while (nodeA != nodeB) {
+            System.out.println("nodeA.val=" + (nodeA == null ? ("nodeA == null  "+headB.val) : nodeA.val));
+            System.out.println("nodeB.val=" + (nodeB == null ? ("nodeB == null  "+headA.val) : nodeB.val));
             nodeA = nodeA == null ? headB : nodeA.next;
             nodeB = nodeB == null ? headA : nodeB.next;
+            System.out.println("");
         }
         return nodeA;
     }
