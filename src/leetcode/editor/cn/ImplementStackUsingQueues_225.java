@@ -19,34 +19,60 @@ package leetcode.editor.cn;
 // Related Topics 栈 设计 
 // 👍 262 👎 0
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 //用队列实现栈
 class ImplementStackUsingQueues_225{
+    public static void main(String[] args) {
+        ImplementStackUsingQueues_225.MyStack myStack = new ImplementStackUsingQueues_225().new MyStack();
+        myStack.push(1);
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(4);
+    }
 //leetcode submit region begin(Prohibit modification and deletion)
 class MyStack {
+    // add offer
+    // remove poll
+    // element peek
+
+
+    private Queue<Integer> queue1;
+    private Queue<Integer> queue2;
 
     /** Initialize your data structure here. */
     public MyStack() {
-
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
     }
-    
+
     /** Push element x onto stack. */
     public void push(int x) {
-
+        // 1 <-- 2 <-- 3 <-- 4
+        queue2.offer(x);
+        while (!queue1.isEmpty()) {
+            queue2.offer(queue1.poll());
+        }
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
     }
-    
+
     /** Removes the element on top of the stack and returns that element. */
     public int pop() {
-
+        return queue1.poll();
     }
-    
+
     /** Get the top element. */
     public int top() {
-
+        return queue1.peek();
     }
-    
+
     /** Returns whether the stack is empty. */
     public boolean empty() {
-
+        return queue1.isEmpty();
     }
 }
 
