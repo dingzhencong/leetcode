@@ -58,34 +58,53 @@ class CoinChange_322{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    HashMap amountMap = new HashMap();
+    /**
+     *  def coinChange(coins: List[int], amount: int):
+     *
+     *     def dp(n):
+     *         # base case
+     *         if n == 0: return 0
+     *         if n < 0: return -1
+     *         # 求最小值，所以初始化为正无穷
+     *         res = float('INF')
+     *         for coin in coins:
+     *             subproblem = dp(n - coin)
+     *             # 子问题无解，跳过
+     *             if subproblem == -1: continue
+     *             res = min(res, 1 + subproblem)
+     *
+     *         return res if res != float('INF') else -1
+     *
+     *     return dp(amount)
+     *
+     */
 
     public int coinChange(int[] coins, int amount) {
-        return solution(coins, amount);
+        if (amount <= 0) {
+            return 0;
+        }
+        return coinChange(coins, amount, new int[amount+1]);
     }
 
-    public int solution(int[] coins, int amount) {
+    private int coinChange(int[] coins, int amount, int[] dpTable) {
         if (amount < 0) {
             return -1;
         }
         if (amount == 0) {
             return 0;
         }
-        if (amountMap.containsKey(amount)) {
-            return amount;
+        if (dpTable[amount] != 0) {
+            return dpTable[amount];
         }
-        int count = 0;
-
+        int min = Integer.MAX_VALUE;
         for (int coin : coins) {
-            int subCount = coinChange(coins, amount - coin);
-            if (subCount == -1) {
-                continue;
+            int count = coinChange(coins, amount - coin, dpTable);
+            if (count >= 0 && count < min) {
+                min = count + 1;
             }
-            count = Math.min(count, 1 + subCount);
         }
-        amountMap.put(amount, count);
-
-        return count;
+        dpTable[amount] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return dpTable[amount];
     }
 
 }
