@@ -29,7 +29,21 @@ class PalindromeLinkedList_234{
  * }
  */
 class Solution {
+    ListNode left;
     public boolean isPalindrome(ListNode head) {
+        left = head;
+        return reverseList2(head);
+    }
+    public boolean reverseList2(ListNode head) {
+        if (head == null) {
+            return true;
+        }
+        boolean res = reverseList2(head.next);
+        res = res && (head.val == left.val);
+        left = left.next;
+        return res;
+    }
+    public boolean isPalindrome(ListNode head,int a) {
         ListNode slow = head;
         ListNode fast = head;
         while (fast != null && fast.next != null) {

@@ -23,26 +23,26 @@ class ReverseLinkedList_206{
  */
 class Solution {
     /*public ListNode reverseList(ListNode head) {
-        ListNode pre, cur, nxt;
-        pre = null; cur = head; nxt = head;
+        ListNode pre, cur, next;
+        pre = null;
+        cur = head; next = null;
         while (cur != null) {
-            nxt = cur.next;
-            // 逐个结点反转
+            next = cur.next;
             cur.next = pre;
-            // 更新指针位置
             pre = cur;
-            cur = nxt;
+            cur = next;
         }
-        // 返回反转后的头结点
         return pre;
     }*/
 
     public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode last = reverseList(head.next);
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = reverseList(head.next);
         head.next.next = head;
         head.next = null;
-        return last;
+        return next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

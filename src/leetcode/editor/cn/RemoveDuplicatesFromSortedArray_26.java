@@ -48,17 +48,19 @@ class RemoveDuplicatesFromSortedArray_26{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeDuplicates(int[] nums) {
-        if(nums == null || nums.length == 0) return 0;
-        int p = 0;
-        int q = 1;
-        while(q < nums.length){
-            if(nums[p] != nums[q]){
-                nums[p + 1] = nums[q];
-                p++;
-            }
-            q++;
+        if (nums.length == 0) {
+            return 0;
         }
-        return p + 1;
+        int slow = 0;
+        int fast = 0;
+        while (fast < nums.length) {
+            if (nums[slow] != nums[fast]) {
+                slow++;
+                nums[slow] = nums[fast];
+            }
+            fast++;
+        }
+        return slow + 1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
