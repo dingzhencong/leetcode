@@ -41,7 +41,7 @@ class ReverseNodesInKGroup_25{
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        
+        return null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

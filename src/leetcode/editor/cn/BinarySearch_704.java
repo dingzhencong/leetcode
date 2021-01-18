@@ -30,6 +30,66 @@ package leetcode.editor.cn;
 
 //二分查找
 class BinarySearch_704{
+    public static void main(String[] args) {
+        int[] arrys = new int[]{1, 2, 2, 3, 3, 4, 5, 7, 7};
+        System.out.println(biSearchFirst(arrys, 2));
+        System.out.println(biSearchLast(arrys, 2));
+    }
+
+
+    /**
+     * 查找第一个元素出现的位置（元素允许重复）
+     * @param array
+     * @param a
+     * @return
+     */
+    public static int biSearchFirst(int[] array, int a) {
+        int n = array.length;
+        int low = 0;
+        int hi = n - 1;
+        int mid = 0;
+        while (low < hi) {
+            mid = (low + hi) / 2;
+            if (array[mid] < a) {
+                low = mid + 1;
+            } else {
+                hi = mid;
+            }
+        }
+        if (array[low] != a) {
+            return -1;
+        } else {
+            return low;
+        }
+    }
+
+    /**
+     * 查询元素最后一次出现的位置
+     * @param array
+     * @param a
+     * @return
+     */
+    public static int biSearchLast(int[] array, int a) {
+        int n = array.length;
+        int low = 0;
+        int hi = n - 1;
+        int mid = 0;
+        while (low < hi) {
+            mid = (low + hi + 1) / 2;
+            if (array[mid] <= a) {
+                low = mid;
+            } else {
+                hi = mid - 1;
+            }
+        }
+
+        if (array[low] != a) {
+            return -1;
+        } else {
+            return hi;
+        }
+    }
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int search(int[] nums, int target) {
