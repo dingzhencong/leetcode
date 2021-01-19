@@ -47,8 +47,24 @@ package leetcode.editor.cn;
 class LongestPalindromicSubstring_5{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public String longestPalindrome(String s) {
-        return "";
+        String longest = "";
+        for (int i = 0; i < s.length(); i++) {
+            String s1 = longestString(s, i, i);
+            String s2 = longestString(s, i, i + 1);
+            longest = longest.length() > s1.length() ? longest : s1;
+            longest = longest.length() > s2.length() ? longest : s2;
+        }
+        return longest;
+    }
+
+    public String longestString(String s, int l, int r) {
+        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+            l--;
+            r++;
+        }
+        return s.substring(l + 1, r);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
