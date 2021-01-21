@@ -27,11 +27,23 @@ package leetcode.editor.cn;
 // Related Topics 数学 字符串 
 // 👍 537 👎 0
 
+import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
+
 //二进制求和
 class AddBinary_67{
+    public static void main(String[] args) {
+        CopyOnWriteArraySet arrayList = new CopyOnWriteArraySet();
+        arrayList.add(1);
+        arrayList.add(1);
+        System.out.println(arrayList.size());
+    }
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String addBinary(String a, String b) {
+
+
         StringBuilder ans = new StringBuilder();
         int ca = 0;
         for(int i = a.length() - 1, j = b.length() - 1;i >= 0 || j >= 0; i--, j--) {
