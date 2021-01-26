@@ -7,7 +7,8 @@ public class Sort {
         int[] nums = new int[]{2, 3, 6, 1, 9, 16, 25, 94, 42, 77};
         Sort sort = new Sort();
 //        sort.bubbleSort(nums);
-        sort.quickSort(nums);
+//        sort.quickSort(nums);
+        sort.mergeSort(nums, 0, nums.length-1);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -74,55 +75,38 @@ public class Sort {
         }
     }
 
-
-    /**
-     * 归并排序
-     * @param nums
-     */
-    public void mergeSort(int[] nums) {
-        if (nums.length < 2) {
-            return;
-        }
-        mergeSort(nums, 0, nums.length - 1);
-    }
-
-    public void mergeSort(int[] nums, int left, int right) {
-        int mid = (left + right) / 2;
-        if (left < right) {
-            //先排序
-            mergeSort(nums, left, mid);
-            mergeSort(nums, mid + 1, right);
-            //再merge两个有序数组，二叉树的后序遍历
-            mergeArray(nums, left, mid, right);
+    public void mergeSort(int[] nums, int start, int end) {
+        int mid = (start + end) / 2;
+        if (start < end) {
+            mergeSort(nums, start, mid);
+            mergeSort(nums, mid+1, end);
+            mergeSort(nums, start, mid, end);
         }
     }
 
-    public void mergeArray(int[] nums, int left, int mid, int right) {
-        //定义一个临时数组
-        int[] tmp = new int[right - left + 1];
-        //定义左指针
-        int l = left;
-        //定义右指针
+    public void mergeSort(int[] nums, int start, int mid, int end) {
+        int[] temp = new int[end - start + 1];
+        int l = start;
         int r = mid + 1;
         int k = 0;
-        while (l <= mid && r <= right) {
+        while (l <= mid && r <= end) {
             if (nums[l] < nums[r]) {
-                tmp[k++] = nums[l++];
+                temp[k++] = nums[l++];
             } else {
-                tmp[k++] = nums[r++];
+                temp[k++] = nums[r++];
             }
         }
         while (l <= mid) {
-            tmp[k++] = nums[l++];
+            temp[k++] = nums[l++];
         }
-        while (r <= right) {
-            tmp[k++] = nums[r++];
+        while (r <= end) {
+            temp[k++] = nums[r++];
         }
-
-        for (int i = 0; i < tmp.length;) {
-            nums[i + left] = tmp[i++];
+        for (int i = 0; i < temp.length; i++) {
+            nums[start + i] = temp[i];
         }
     }
+
 
     /**
      * 将数组的某一段元素进行划分，小的在左边，大的在右边
@@ -186,40 +170,46 @@ public class Sort {
 
     }
 
+    /**
+     * 归并
+     * 递归左右数组排序，再合并两个有序数组，二叉树的后续便利。
+     *
+     * 快排
+     * 先找基准点，再左右排序，二叉树的前序便利
+     * @param nums
+     */
     public void quickSort(int[] nums) {
         quickSort(nums, 0, nums.length - 1);
     }
 
     public void quickSort(int[] nums, int start, int end) {
         if (end > start) {
-            int mid = divide(nums, start, end);
-            // 注意后续mid点分别+1-1
+            int mid = quickSortDivide(nums, start, end);
             quickSort(nums, start, mid - 1);
             quickSort(nums, mid + 1, end);
         }
     }
 
-    public int quickSortDivide(int[] nums, int start, int end) {
-        //基准点
-        int tmp = nums[end];
+    public int quickSortDivide(int[] a, int start, int end) {
+        int base = a[start];
         while (start < end) {
-            while (start < end && nums[start] < tmp) {
-                start++;
-            }
-            if (start < end) {
-                int tmplate = nums[start];
-                nums[start] = nums[end];
-                nums[end] = tmplate;
-                end--;
-            }
-            while (start < end && nums[end] > tmp) {
+            while (start < end && a[end] >= base) {
                 end--;
             }
             if (start < end) {
-                int tmplate = nums[start];
-                nums[start] = nums[end];
-                nums[end] = tmplate;
+                int temp = a[start];
+                a[start] = a[end];
+                a[end] = temp;
                 start++;
+            }
+            while (start < end && a[start] <= base) {
+                start++;
+            }
+            if (start < end) {
+                int temp = a[start];
+                a[start] = a[end];
+                a[end] = temp;
+                end--;
             }
         }
         return end;
