@@ -51,7 +51,9 @@ class MyStack {
     /** Push element x onto stack. */
     public void push(int x) {
         // 1 <-- 2 <-- 3 <-- 4
+        // only one element
         queue2.offer(x);
+        //
         while (!queue1.isEmpty()) {
             queue2.offer(queue1.poll());
         }

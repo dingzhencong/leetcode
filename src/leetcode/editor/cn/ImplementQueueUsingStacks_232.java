@@ -47,13 +47,7 @@ package leetcode.editor.cn;
 //myQueue.pop(); // return 1, queue is [2]
 //myQueue.empty(); // return false
 // 
-//
-// 
-// 
-//
-// 
-//
-// 提示： 
+// 提示：
 //
 // 
 // 1 <= x <= 9 
