@@ -27,6 +27,9 @@ package leetcode.editor.cn;
 
 //整数反转
 class ReverseInteger_7{
+    public static void main(String[] args) {
+        System.out.println(Integer.MAX_VALUE);
+    }
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int reverse(int x) {

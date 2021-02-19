@@ -51,8 +51,7 @@ class Solution {
         if (nums.length == 0) {
             return 0;
         }
-        int slow = 0;
-        int fast = 0;
+        int slow = 0, fast = 0;
         while (fast < nums.length) {
             if (nums[slow] != nums[fast]) {
                 slow++;
@@ -62,6 +61,7 @@ class Solution {
         }
         return slow + 1;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
