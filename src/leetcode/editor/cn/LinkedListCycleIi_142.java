@@ -75,18 +75,42 @@ class LinkedListCycleIi_142{
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        ListNode pos = head;
-        Set<ListNode> visited = new HashSet<ListNode>();
-        while (pos != null) {
-            if (visited.contains(pos)) {
-                return pos;
-            } else {
-                visited.add(pos);
+        ListNode slow = head;
+        ListNode fast = head;
+        while (true) {
+            if (fast == null || fast.next == null) {
+                return null;
             }
-            pos = pos.next;
+            slow = slow.next;
+            fast = fast.next.next;
+            if (fast == slow) {
+                break;
+            }
         }
-        return null;
+        fast = head;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return fast;
     }
+    /*
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (true) {
+            if (fast == null || fast.next == null) return null;
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) break;
+        }
+        fast = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
+    }
+    * */
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

@@ -33,7 +33,7 @@ class Solution {
             cur = next;
         }
         return pre;
-    }*/
+    }*//*
 
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
@@ -43,6 +43,19 @@ class Solution {
         head.next.next = head;
         head.next = null;
         return next;
+    }*/
+
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

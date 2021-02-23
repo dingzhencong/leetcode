@@ -50,7 +50,7 @@ class KthSmallestElementInABst_230{
  * }
  */
 class Solution {
-    int index = 0;
+    /*int index = 0;
     int val = 0;
     public int kthSmallest(TreeNode root, int k) {
         reverse(root, k);
@@ -64,6 +64,26 @@ class Solution {
         reverse(root.left, k);
         index++;
         if (index == k) {
+            val = root.val;
+            return;
+        }
+        reverse(root.right, k);
+    }*/
+
+    int val = 0;
+    int index = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        reverse(root, k);
+        return val;
+    }
+
+    public void reverse(TreeNode root, int k) {
+        if (root == null) {
+            return;
+        }
+        reverse(root.left, k);
+        index++;
+        if (k == index) {
             val = root.val;
             return;
         }

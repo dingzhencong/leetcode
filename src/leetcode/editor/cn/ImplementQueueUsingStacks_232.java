@@ -47,14 +47,21 @@ package leetcode.editor.cn;
 //myQueue.pop(); // return 1, queue is [2]
 //myQueue.empty(); // return false
 // 
-// 提示：
+//
+// 
+// 
+//
+// 
+//
+// 提示： 
 //
 // 
 // 1 <= x <= 9 
 // 最多调用 100 次 push、pop、peek 和 empty 
 // 假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作） 
 // 
-// Related Topics 栈 设计
+// Related Topics 栈 设计 
+// 👍 285 👎 0
 
 import java.util.Stack;
 
@@ -62,62 +69,46 @@ import java.util.Stack;
 class ImplementQueueUsingStacks_232{
 //leetcode submit region begin(Prohibit modification and deletion)
 class MyQueue {
-    private Stack<Integer> s1;//入栈
-    private Stack<Integer> s2;//出栈
+    private Stack stackIn;
+    private Stack stackOut;
     /** Initialize your data structure here. */
-    //构造方法
-    public MyQueue(){
-        s1 = new Stack<>();
-        s2 = new Stack<>();
+    public MyQueue() {
+        stackIn = new Stack();
+        stackOut = new Stack();
     }
 
+    // 1  2
+    // add offer remove poll element peek
     /** Push element x to the back of queue. */
-    //入栈
     public void push(int x) {
-        /*
-        1.首先给s1入栈
-         */
-        s1.push(x);
+        stackIn.push(x);
     }
-
+    
     /** Removes the element from in front of queue and returns that element. */
     public int pop() {
-        /*
-        1.如果s2为空，则将s1(是否为空)全部的值先移动到s2
-        2.如果s2有值，则直接弹出
-         */
-        if (s2.empty()){
-            while(!s1.empty()){
-                s2.push(s1.pop());
-            }
-        }
-        //这个判断条件就是去除s1为空，从而导致s2也为空的情况
-        if (!s2.empty()){
-            return s2.pop();
+        peek();
+        if (!stackOut.isEmpty()) {
+            return (int) stackOut.pop();
         }
         return -1;
     }
-
+    
     /** Get the front element. */
     public int peek() {
-        if (s2.empty()){
-            while(!s1.empty()){
-                s2.push(s1.pop());
+        if (stackOut.isEmpty()) {
+            while (!stackIn.isEmpty()) {
+                stackOut.push(stackIn.pop());
             }
         }
-        if (!s2.empty()){
-            return s2.peek();
+        if (!stackOut.isEmpty()) {
+            return (int) stackOut.peek();
         }
         return -1;
-
     }
-
+    
     /** Returns whether the queue is empty. */
     public boolean empty() {
-        if (s1.empty() && s2.empty()){
-            return true;
-        }
-        return false;
+        return stackOut.isEmpty() && stackIn.isEmpty();
     }
 }
 

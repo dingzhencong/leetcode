@@ -38,9 +38,7 @@ package leetcode.editor.cn;
 // Related Topics 数组 双指针 
 // 👍 2890 👎 0
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 //三数之和
 class ThreeSum_15{
@@ -53,7 +51,47 @@ class ThreeSum_15{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        return null;
+        List<List<Integer>> lists = new ArrayList<>();
+        for (int i = 0; i <nums.length ; i++) {
+            List<List<Integer>> list = twoSum(nums, i+1, 0 - nums[i]);
+            ListIterator iterator = list.listIterator();
+            while (iterator.hasNext()) {
+                List<Integer> l = (List<Integer>) iterator.next();
+                l.add(nums[i]);
+            }
+            lists.addAll(list);
+        }
+        return lists;
+    }
+
+    public List<List<Integer>> twoSum(int[] numbers, int start,int target) {
+        List<List<Integer>> list1 = new ArrayList<>();
+        int l = start;
+        int r = numbers.length - 1;
+        while (l < r) {
+            int sum = numbers[l] + numbers[r];
+            int lnum = numbers[l];
+            int rnum = numbers[r];
+            while (sum > target && numbers[r] == rnum) {
+                r--;
+            }
+            while (sum < target && numbers[l] == lnum) {
+                l++;
+            }
+            if (sum == target) {
+                List<Integer> list = new ArrayList<>();
+                list.add(numbers[l]);
+                list.add(numbers[r]);
+                list1.add(list);
+                while (l < r && numbers[l] == lnum) {
+                    l++;
+                }
+                while (l < r && numbers[r] == rnum) {
+                    r--;
+                }
+            }
+        }
+        return list1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
