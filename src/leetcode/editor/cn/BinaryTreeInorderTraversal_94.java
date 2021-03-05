@@ -79,20 +79,21 @@ class Solution {
     List<Integer> nodeList = new ArrayList<>();
 
     public List<Integer> inorderTraversal(TreeNode root) {
-        if (root == null) {
-            return nodeList;
-        }
+        List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack();
-        while (!stack.isEmpty() || root != null) {
+        while (root != null || !stack.isEmpty()) {
             while (root != null) {
+//                result.add(root.val);
                 stack.push(root);
                 root = root.left;
             }
             root = stack.pop();
-            nodeList.add(root.val);
+            result.add(root.val);
             root = root.right;
         }
-        return nodeList;
+
+        return result;
+//        return nodeList;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -55,10 +55,7 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BinaryTreePreorderTraversal{
     public static void main(String[] args){
@@ -84,14 +81,14 @@ public class BinaryTreePreorderTraversal{
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        Deque<TreeNode> deque = new LinkedList<>();
-        while (root != null || !deque.isEmpty()) {
+        Stack<TreeNode> stack = new Stack();
+        while (root != null || !stack.isEmpty()) {
             while (root != null) {
                 result.add(root.val);
-                deque.push(root);
+                stack.push(root);
                 root = root.left;
             }
-            root = deque.pop();
+            root = stack.pop();
             root = root.right;
         }
 

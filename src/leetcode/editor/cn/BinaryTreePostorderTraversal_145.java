@@ -45,13 +45,13 @@ class Solution {
         }
         Stack<TreeNode> stack = new Stack<>();
         TreeNode pre = null;
-        while (!stack.isEmpty() || root != null) {
+        while (root != null || !stack.isEmpty()) {
             while (root != null) {
                 stack.push(root);
                 root = root.left;
             }
             root = stack.pop();
-            if (root.right == null || pre != root.right) {
+            if (root.right == null || root.right == pre) {
                 nodeList.add(root.val);
                 pre = root;
                 root = null;

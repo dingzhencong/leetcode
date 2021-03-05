@@ -25,11 +25,11 @@ class Solution {
         for (int i = 0, j = s.length() - 1; i < j; ) {
             Character first = Character.toLowerCase(s.charAt(i));
             Character second = Character.toLowerCase(s.charAt(j));
-            if (first == ' ') {
+            if (!Character.isLetterOrDigit(first)) {
                 i++;
                 continue;
             }
-            if (second == ' ') {
+            if (!Character.isLetterOrDigit(second)) {
                 j--;
                 continue;
             }

@@ -51,21 +51,22 @@ class Solution {
     public String longestPalindrome(String s) {
         String longest = "";
         for (int i = 0; i < s.length(); i++) {
-            String s1 = longestString(s, i, i);
-            String s2 = longestString(s, i, i + 1);
-            longest = longest.length() > s1.length() ? longest : s1;
-            longest = longest.length() > s2.length() ? longest : s2;
+            String s1 = longest(s, i, i);
+            String s2 = longest(s, i, i + 1);
+            longest = s1.length() > longest.length() ? s1 : longest;
+            longest = s2.length() > longest.length() ? s2 : longest;
         }
         return longest;
     }
 
-    public String longestString(String s, int l, int r) {
-        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
-            l--;
-            r++;
+    public String longest(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(right) == s.charAt(left)) {
+            left--;
+            right++;
         }
-        return s.substring(l + 1, r);
+        return s.substring(++left, right);
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

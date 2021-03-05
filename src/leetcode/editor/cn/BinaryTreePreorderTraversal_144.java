@@ -77,23 +77,19 @@ class BinaryTreePreorderTraversal_144{
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        if (root == null) {
-            return list;
-        }
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            list.add(node.val);
-            if (node.right != null) {
-                stack.push(node.right);
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                result.add(root.val);
+                stack.push(root);
+                root = root.left;
             }
-            if (node.left != null) {
-                stack.push(node.left);
-            }
+            root = stack.pop();
+            root = root.right;
         }
-        return list;
+
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

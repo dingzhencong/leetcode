@@ -55,10 +55,10 @@ class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode newHead = head.next;
-        head.next = swapPairs(newHead.next);
-        newHead.next = head;
-        return newHead;
+        ListNode neeNode = head.next;
+        head.next = swapPairs(head.next.next);
+        neeNode.next = head;
+        return neeNode;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

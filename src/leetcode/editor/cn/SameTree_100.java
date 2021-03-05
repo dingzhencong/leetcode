@@ -36,8 +36,43 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 深度优先搜索
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
 //相同的树
 class SameTree_100{
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        String s = "12312312";
+        System.out.println("使用库函数转换：" + Integer.valueOf(s));
+        int res = StrToInt(s);
+        System.out.println("使用自己写的方法转换：" + res);
+
+    }
+
+    public static int StrToInt(String string) {
+        char[] chars = string.toCharArray();
+        int flag = 0;
+        if (chars[0] == '-') {
+            flag = 1;
+        } else if (chars[0] == '+') {
+            flag = 2;
+        }
+        int start = flag > 0 ? 1 : 0;
+        int num = 0;
+        for (int i = start; i < chars.length; i++) {
+            Character character = chars[i];
+            if (Character.isDigit(character)) {
+                int tem = character - '0';
+                num = num * 10 + tem;
+            } else {
+                return 0;
+            }
+        }
+        return flag == 1 ? -num : num;
+    }
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -67,6 +102,7 @@ class Solution {
         }
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

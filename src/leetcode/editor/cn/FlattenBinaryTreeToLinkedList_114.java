@@ -56,13 +56,13 @@ class Solution {
         TreeNode left = root.left;
         TreeNode right = root.right;
 
-        root.left = null;
-        root.right = left;
-        TreeNode p = root;
-        while (p.right != null) {
-            p = p.right;
+        TreeNode node = root;
+        node.left = null;
+        node.right = left;
+        while (node.right != null) {
+            node = node.right;
         }
-        p.right = right;
+        node.right = right;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
